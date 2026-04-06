@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindvalley — The Pathway Ownership Model</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f4;
+  --ink: #111009;
+  --gold: #c49a2a;
+  --gold-lt: #ddb84a;
+  --gold-pale: #f5ecd4;
+  --gold-dim: rgba(196,154,42,0.15);
+  --muted: #7c7468;
+  --rule: #e5dfd4;
+  --white: #ffffff;
+  --risk: #7a1e1e;
+  --risk-pale: #fdf2f2;
+  --acq: #0f3d52;
+  --ret: #2d1545;
+  --organic: #0f3d28;
+  --paid: #3d2a0f;
+  --martech: #0f2a3d;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden;}
+
+/* ─── SIDENAV ─── */
+.sidenav{position:fixed;left:0;top:0;bottom:0;width:220px;background:var(--ink);z-index:200;display:flex;flex-direction:column;padding:36px 0;}
+.nav-logo{padding:0 24px 28px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:20px;}
+.nav-logo-name{font-family:'DM Serif Display',serif;font-size:17px;color:#fff;}
+.nav-logo-sub{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt);margin-top:3px;}
+.nav-link{display:flex;align-items:center;gap:10px;padding:9px 24px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;cursor:pointer;border-left:2px solid transparent;transition:all .18s;}
+.nav-link:hover{color:rgba(255,255,255,.7);}
+.nav-link.active{color:var(--gold-lt);border-left-color:var(--gold);background:rgba(255,255,255,.03);}
+.nav-n{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.18);width:18px;flex-shrink:0;}
+.nav-link.active .nav-n{color:var(--gold);}
+.nav-foot{margin-top:auto;padding:18px 24px 0;border-top:1px solid rgba(255,255,255,.07);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.18);}
+
+/* ─── MAIN ─── */
+.main{margin-left:220px;}
+
+/* ─── COVER ─── */
+.cover{min-height:100vh;background:var(--ink);padding:80px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:linear-gradient(135deg,transparent 40%,rgba(196,154,42,0.055) 100%);pointer-events:none;}
+.cover::after{content:'';position:absolute;bottom:-120px;left:15%;width:480px;height:480px;background:radial-gradient(circle,rgba(196,154,42,0.07) 0%,transparent 68%);pointer-events:none;}
+.cover-eyebrow{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:56px;}
+.cover-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.cover-h{font-family:'DM Serif Display',serif;font-size:clamp(52px,8.5vw,108px);line-height:.92;color:#fff;letter-spacing:-.02em;margin-bottom:28px;}
+.cover-h em{display:block;font-style:italic;color:var(--gold-lt);}
+.cover-desc{font-size:15px;color:rgba(255,255,255,.42);max-width:460px;line-height:1.75;font-weight:300;margin-bottom:0;}
+.cover-stats{display:flex;gap:48px;padding-top:52px;border-top:1px solid rgba(255,255,255,.09);flex-wrap:wrap;}
+.cstat{display:flex;flex-direction:column;gap:5px;}
+.cstat-l{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);}
+.cstat-v{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;}
+
+/* ─── SECTIONS ─── */
+.sec{padding:80px;border-bottom:1px solid var(--rule);opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
+.sec.visible{opacity:1;transform:translateY(0);}
+.sec-hd{display:flex;align-items:baseline;gap:18px;margin-bottom:48px;}
+.sec-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.14em;}
+.sec-t{font-family:'DM Serif Display',serif;font-size:clamp(26px,3.8vw,42px);color:var(--ink);line-height:1.05;}
+.sec-t em{font-style:italic;color:var(--gold);}
+.sec-rule{flex:1;height:1px;background:var(--rule);}
+
+/* ─── HOW IT WORKS TIERS ─── */
+.tier-stack{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);}
+.tier{border-bottom:1px solid var(--rule);}
+.tier:last-child{border-bottom:none;}
+.tier-header{display:grid;grid-template-columns:180px 1fr;gap:0;min-height:56px;}
+.tier-label{background:var(--ink);color:var(--gold-lt);padding:18px 24px;display:flex;flex-direction:column;justify-content:center;font-size:9px;letter-spacing:.24em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.08);}
+.tier-label span{font-family:'DM Serif Display',serif;font-size:15px;color:#fff;margin-top:3px;letter-spacing:0;text-transform:none;}
+.tier-content{padding:20px 28px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;}
+.tier-cards{display:grid;gap:1px;background:var(--rule);flex:1;}
+.tier-cards.cols-2{grid-template-columns:1fr 1fr;}
+.tier-cards.cols-4{grid-template-columns:repeat(4,1fr);}
+.tier-card{background:var(--white);padding:22px 22px;}
+.tier-card.dark{background:var(--ink);}
+.tc-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.tier-card.dark .tc-tag{color:var(--gold-lt);}
+.tc-name{font-family:'DM Serif Display',serif;font-size:16px;color:var(--ink);margin-bottom:5px;line-height:1.2;}
+.tier-card.dark .tc-name{color:#fff;}
+.tc-desc{font-size:11px;color:var(--muted);line-height:1.65;}
+.tier-card.dark .tc-desc{color:rgba(255,255,255,.42);}
+.tc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;}
+.tc-tag-pill{font-size:9px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule);padding:3px 8px;color:var(--muted);background:var(--bg);}
+.tier-card.dark .tc-tag-pill{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.38);background:transparent;}
+.tier-arrow{display:flex;justify-content:center;align-items:center;padding:9px;background:var(--bg);border-bottom:1px solid var(--rule);gap:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+.tier-arrow::before,.tier-arrow::after{content:'';flex:1;height:1px;background:var(--rule);}
+.arr{color:var(--gold);font-size:14px;}
+
+/* ─── ORG CHART ─── */
+.org-scroll{overflow-x:auto;padding-bottom:16px;}
+.org-tree{min-width:1080px;display:flex;flex-direction:column;align-items:center;}
+.cgo-node{background:var(--ink);color:#fff;padding:20px 52px;display:flex;flex-direction:column;align-items:center;}
+.cgo-tag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:3px;}
+.cgo-name{font-family:'DM Serif Display',serif;font-size:20px;}
+.vl{width:2px;height:32px;background:var(--gold);}
+.vl-sm{width:1px;height:22px;background:var(--rule);}
+.vl-dash{width:1px;height:22px;border-left:1px dashed rgba(196,154,42,.4);}
+.hrail{width:90%;height:2px;background:var(--gold);}
+.branches{display:flex;justify-content:center;width:100%;gap:10px;padding:0 10px;}
+.branch{display:flex;flex-direction:column;align-items:center;flex:1;}
+.onode{width:100%;border:1px solid var(--rule);background:var(--white);padding:15px 15px;position:relative;}
+.onode::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.onode.gm{border-style:dashed;border-color:rgba(196,154,42,.4);}
+.onode.gm::before{background:linear-gradient(90deg,#8b3a3a,#c45c5c);}
+.onode.growth::before{background:linear-gradient(90deg,var(--acq),var(--ret));}
+.onode.organic::before{background:var(--organic);}
+.onode.paid::before{background:var(--paid);}
+.onode.martech::before{background:var(--martech);}
+.on-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.on-name{font-family:'DM Serif Display',serif;font-size:13px;color:var(--ink);margin-bottom:2px;line-height:1.2;}
+.on-sub{font-size:10px;color:var(--muted);}
+.dashed-badge{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:1px dashed rgba(196,154,42,.5);color:var(--gold);padding:2px 7px;margin-bottom:6px;}
+
+.squad-pair{display:flex;gap:8px;width:100%;}
+.squad-col{flex:1;display:flex;flex-direction:column;align-items:center;}
+.squad-node{width:100%;background:#f9f7f3;border:1px solid var(--rule);padding:12px 12px;}
+.sq-head{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.sq-title{font-family:'DM Serif Display',serif;font-size:12px;color:var(--ink);margin-bottom:7px;padding-bottom:6px;border-bottom:1px solid var(--rule);}
+.pway{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:10px;}
+.pway:last-child{border-bottom:none;}
+.pway-n{color:var(--ink);font-weight:500;}
+.pway-t{font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.pway.open .pway-t{color:var(--gold);font-style:italic;}
+
+.infra-row{display:flex;gap:8px;width:80%;position:relative;}
+.infra-row::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:var(--rule);}
+.infra-col{flex:1;display:flex;flex-direction:column;align-items:center;}
+.infra-node{width:100%;background:var(--gold-pale);border:1px solid var(--rule);padding:7px 8px;text-align:center;font-size:9px;color:var(--muted);}
+
+.sub-stack{display:flex;flex-direction:column;gap:5px;width:100%;}
+.sub-node{width:100%;background:#f9f7f3;border:1px solid var(--rule);padding:6px 10px;font-size:9px;color:var(--muted);text-align:center;}
+.sub-node.highlight{background:var(--gold-pale);color:var(--gold);font-style:italic;border-color:rgba(196,154,42,.25);}
+
+/* ─── RISK BOX ─── */
+.risk-box{background:var(--risk-pale);border:1px solid rgba(122,30,30,.2);border-left:3px solid var(--risk);padding:24px 28px;margin:36px 0 0;}
+.risk-title{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--risk);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.risk-title::before{content:'⚠';font-size:12px;}
+.risk-body{font-size:13px;color:#5a2020;line-height:1.7;}
+.risk-body strong{color:var(--risk);}
+
+/* ─── TWO COL ─── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.tcell{background:var(--white);padding:30px;}
+.tcell-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.tcell-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);margin-bottom:16px;line-height:1.2;}
+.tcell ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.tcell ul li{display:flex;gap:10px;font-size:12px;color:var(--muted);line-height:1.55;}
+.tcell ul li::before{content:'—';color:var(--gold);flex-shrink:0;}
+
+/* ─── JD TABS ─── */
+.jd-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--rule);margin-bottom:32px;}
+.jd-tab{padding:10px 18px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .18s;white-space:nowrap;}
+.jd-tab:hover{color:var(--ink);}
+.jd-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.jd-panel{display:none;}
+.jd-panel.active{display:block;}
+
+.jd-card{border:1px solid var(--rule);overflow:hidden;}
+.jd-header{background:var(--ink);padding:32px 40px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;}
+.jd-role-type{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:7px;}
+.jd-role-title{font-family:'DM Serif Display',serif;font-size:26px;color:#fff;line-height:1.15;}
+.jd-role-title em{font-style:italic;color:var(--gold-lt);}
+.jd-chips{display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+.jd-chip{font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.14);padding:5px 11px;color:rgba(255,255,255,.45);}
+.jd-body{padding:40px;}
+.jd-lede{font-size:15px;color:var(--ink);line-height:1.75;font-weight:300;padding:20px 24px;background:var(--gold-pale);border-left:3px solid var(--gold);margin-bottom:36px;}
+.jd-sec{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--rule);}
+.jd-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:32px;}
+.jd-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.jd-list li{display:flex;gap:11px;font-size:13px;color:var(--muted);line-height:1.6;}
+.jd-list li::before{content:'—';color:var(--gold);flex-shrink:0;}
+.jd-mandate{background:var(--ink);padding:24px 28px;margin-bottom:1px;}
+.jd-mandate-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:5px;}
+.jd-mandate-title{font-family:'DM Serif Display',serif;font-size:16px;color:#fff;margin-bottom:6px;}
+.jd-mandate-body{font-size:12px;color:rgba(255,255,255,.42);line-height:1.65;}
+.jd-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.jd-metric{background:var(--white);padding:17px;}
+.jm-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.jm-val{font-family:'DM Serif Display',serif;font-size:14px;color:var(--ink);line-height:1.2;}
+.not-box{background:#f9f7f3;border:1px solid var(--rule);padding:18px 22px;margin-top:28px;}
+.not-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.not-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.not-list li{display:flex;gap:9px;font-size:12px;color:var(--muted);line-height:1.5;}
+.not-list li::before{content:'×';color:rgba(122,30,30,.5);flex-shrink:0;}
+
+/* ─── HEADCOUNT ─── */
+.hc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:1px;}
+.hc-cell{background:var(--white);padding:22px 18px;}
+.hc-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.hc-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--ink);line-height:1;}
+.hc-desc{font-size:10px;color:var(--muted);margin-top:4px;}
+.hc-cell.gold{background:var(--gold-pale);}
+.hc-total{background:var(--ink);padding:30px 40px;display:flex;align-items:baseline;gap:20px;}
+.hc-total-n{font-family:'DM Serif Display',serif;font-size:68px;color:var(--gold-lt);line-height:1;}
+.hc-total-t{font-size:14px;color:rgba(255,255,255,.4);font-weight:300;max-width:360px;line-height:1.65;}
+
+/* ─── RISKS ─── */
+.risk-grid{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.risk-row{background:var(--white);padding:26px 28px;display:grid;grid-template-columns:220px 1fr 180px;gap:24px;align-items:start;}
+.risk-row:nth-child(odd){background:#fdfcfa;}
+.rr-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--risk);margin-bottom:4px;}
+.rr-title{font-family:'DM Serif Display',serif;font-size:15px;color:var(--ink);}
+.rr-body{font-size:12px;color:var(--muted);line-height:1.65;}
+.rr-sev{display:inline-block;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid;}
+.sev-high{color:var(--risk);border-color:rgba(122,30,30,.3);background:var(--risk-pale);}
+.sev-med{color:#7a5a1e;border-color:rgba(122,90,30,.3);background:#fdf8ee;}
+
+/* ─── TRANSITION ─── */
+.phase-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.phase-block{background:var(--white);padding:30px 26px;}
+.phase-n{font-family:'DM Serif Display',serif;font-size:44px;color:var(--gold-dim);line-height:1;margin-bottom:8px;}
+.phase-wk{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.phase-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);margin-bottom:10px;}
+.phase-body{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* ─── FOOTER ─── */
+.doc-footer{padding:36px 80px;background:var(--ink);display:flex;justify-content:space-between;align-items:center;}
+.df-text{font-family:'DM Serif Display',serif;font-style:italic;color:rgba(255,255,255,.3);}
+.df-meta{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.18);}
+
+@media(max-width:900px){
+  .sidenav{display:none;} .main{margin-left:0;}
+  .sec,.cover,.doc-footer{padding:36px 24px;}
+  .jd-cols,.two-col,.phase-row{grid-template-columns:1fr;}
+  .hc-grid{grid-template-columns:repeat(3,1fr);}
+  .jd-metrics{grid-template-columns:1fr 1fr;}
+  .tier-cards.cols-4{grid-template-columns:1fr 1fr;}
+  .risk-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="sidenav">
+  <div class="nav-logo">
+    <div class="nav-logo-name">Mindvalley</div>
+    <div class="nav-logo-sub">Org Design · v4 · 2026</div>
+  </div>
+  <a class="nav-link active" href="#cover" onclick="setActive(this)"><span class="nav-n">00</span>Overview</a>
+  <a class="nav-link" href="#how" onclick="setActive(this)"><span class="nav-n">01</span>How It Works</a>
+  <a class="nav-link" href="#structure" onclick="setActive(this)"><span class="nav-n">02</span>Org Chart</a>
+  <a class="nav-link" href="#functions" onclick="setActive(this)"><span class="nav-n">03</span>Functions</a>
+  <a class="nav-link" href="#jds" onclick="setActive(this)"><span class="nav-n">04</span>Role Briefs</a>
+  <a class="nav-link" href="#headcount" onclick="setActive(this)"><span class="nav-n">05</span>Headcount</a>
+  <a class="nav-link" href="#risks" onclick="setActive(this)"><span class="nav-n">06</span>Risks</a>
+  <a class="nav-link" href="#video" onclick="setActive(this)"><span class="nav-n">07</span>Video</a>
+  <a class="nav-link" href="#transition" onclick="setActive(this)"><span class="nav-n">08</span>Transition</a>
+  <div class="nav-foot">Confidential · April 2026</div>
+</nav>
+
+<main class="main">
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <div>
+    <div class="cover-eyebrow">Mindvalley Marketing · April 2026</div>
+    <div class="cover-h">The Pathway<br><em>Ownership Model</em></div>
+    <div class="cover-desc">Every commercial outcome has a named owner at every level. General Managers run business units. Growth squads execute by pathway. Channel teams scale. AI compresses execution throughout.</div>
+  </div>
+  <div class="cover-stats">
+    <div class="cstat"><div class="cstat-l">Author</div><div class="cstat-v">Marisha Lakhiani, CGO</div></div>
+    <div class="cstat"><div class="cstat-l">Model</div><div class="cstat-v">Pathway Ownership</div></div>
+    <div class="cstat"><div class="cstat-l">Target Headcount</div><div class="cstat-v">~22 people</div></div>
+    <div class="cstat"><div class="cstat-l">Current</div><div class="cstat-v">~44 people</div></div>
+    <div class="cstat"><div class="cstat-l">Date</div><div class="cstat-v">April 2026</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how">
+  <div class="sec-hd"><span class="sec-n">01</span><h2 class="sec-t">How It <em>Works</em></h2><div class="sec-rule"></div></div>
+
+  <p style="font-size:15px;color:var(--muted);max-width:620px;line-height:1.8;margin-bottom:40px;font-weight:300;">The model has four layers. General Managers set commercial strategy for their business unit. Growth squads execute pathway-level campaigns and return data upward. Channel teams (Organic + Paid) execute at scale across all pathways. Infrastructure (Data + MarTech) serves the whole org and reports to CGO.</p>
+
+  <div class="tier-stack">
+    <div class="tier">
+      <div class="tier-cards cols-2" style="background:var(--ink);">
+        <div class="tier-card dark" style="border-bottom:none;">
+          <div class="tc-tag">Portfolio Layer</div>
+          <div class="tc-name">CGO — Marisha Lakhiani</div>
+          <div class="tc-desc">Growth strategy, budget authority, org design, AI adoption, and the cross-unit view that nobody else holds. Rafay and Jaideep work daily with Marisha and report to Vishen.</div>
+        </div>
+        <div class="tier-card dark" style="border-bottom:none;border-left:1px solid rgba(255,255,255,0.08);">
+          <div class="tc-tag">Infrastructure · Reports to CGO</div>
+          <div class="tc-name">Data & MarTech</div>
+          <div class="tc-desc">2 Analysts + MarTech Lead + Automation Engineer. Reports to CGO, services all functions. Owns attribution, stack, AI workflows, and the data that flows back to every layer above.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-arrow"><span class="arr">↓</span> Commercial strategy briefed down · Data flows back up</div>
+
+    <div class="tier">
+      <div class="tier-cards cols-2">
+        <div class="tier-card" style="border-top:3px solid #c45c5c;">
+          <div class="tc-tag">General Manager · Reports to CEO · Works with CGO</div>
+          <div class="tc-name">Rafay Sattar</div>
+          <div class="tc-desc" style="margin-bottom:10px;">GM of Membership. Owns the full commercial picture: product vision, subscription design, author/talent pipeline, pricing, channel mix, partnerships, influencer strategy, and commercial health (refunds, cancellations, NPS). Briefs Growth squads on Membership priorities. Accountable for Membership P&L and the path to 1M subscribers.</div>
+          <div class="tc-tags">
+            <span class="tc-tag-pill">Product Vision</span><span class="tc-tag-pill">Subscription Design</span><span class="tc-tag-pill">Author Pipeline</span><span class="tc-tag-pill">Channel Strategy</span><span class="tc-tag-pill">Partnerships</span><span class="tc-tag-pill">Influencers</span><span class="tc-tag-pill">Refunds & Cancellations</span><span class="tc-tag-pill">Membership P&L</span>
+          </div>
+        </div>
+        <div class="tier-card" style="border-top:3px solid #4a7ca4;">
+          <div class="tc-tag">General Manager · Reports to CEO · Works with CGO</div>
+          <div class="tc-name">Jaideep Chagger</div>
+          <div class="tc-desc" style="margin-bottom:10px;">GM of Academy. Owns the full commercial picture: which programs to build or retire, Summit model design, Mastery and Accelerator launch strategy, pricing and offer architecture, author selection, cold audience acquisition strategy, B2B channel development, and commercial health across all Academy products. Briefs Growth squads on Academy priorities and launch calendar.</div>
+          <div class="tc-tags">
+            <span class="tc-tag-pill">Summit Model</span><span class="tc-tag-pill">Program Portfolio</span><span class="tc-tag-pill">Offer Architecture</span><span class="tc-tag-pill">Cold Audience</span><span class="tc-tag-pill">B2B Channel</span><span class="tc-tag-pill">Author Selection</span><span class="tc-tag-pill">Refunds & Conversion</span><span class="tc-tag-pill">Academy P&L</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-arrow"><span class="arr">↓</span> GMs brief Head of Growth · Head of Growth disseminates to squads</div>
+
+    <div class="tier">
+      <div class="tier-cards cols-2" style="background:var(--rule);">
+        <div class="tier-card" style="border-top:3px solid var(--acq);grid-column:1/-1;">
+          <div class="tc-tag">Operations Layer — Critical Role</div>
+          <div class="tc-name">Head of Growth</div>
+          <div class="tc-desc">Receives commercial priorities from Rafay and Jaideep. Translates strategy into execution plans with owners, deadlines, and success metrics. Manages 8 pathway leads across Acquisition and Retention squads. Makes day-to-day decisions without needing the CGO in the room. Creates accountability — not status updates. This role is the linchpin of the entire model.</div>
+          <div class="tc-tags">
+            <span class="tc-tag-pill">Squad Management</span><span class="tc-tag-pill">Priority Dissemination</span><span class="tc-tag-pill">Day-to-Day Decisions</span><span class="tc-tag-pill">Performance Cadence</span><span class="tc-tag-pill">GM Alignment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-arrow"><span class="arr">↓</span> Squads execute by pathway · Performance data returns upward</div>
+
+    <div class="tier">
+      <div class="tier-cards cols-2">
+        <div class="tier-card" style="border-top:3px solid var(--acq);">
+          <div class="tc-tag">Growth · Acquisition Squad · 4 Pathway Leads</div>
+          <div class="tc-name">Acquisition</div>
+          <div class="tc-desc">One lead per pathway (Manifesting, Entrepreneurship, Longevity, Speaking). Owns ads, audiences, funnel strategy, summit launches, accelerator launches — everything that brings new people in. Briefs Paid team on spend strategy. Revenue is the number.</div>
+          <div class="tc-tags"><span class="tc-tag-pill">Manifesting</span><span class="tc-tag-pill">Entrepreneurship</span><span class="tc-tag-pill">Longevity</span><span class="tc-tag-pill">Speaking</span></div>
+        </div>
+        <div class="tier-card" style="border-top:3px solid var(--ret);">
+          <div class="tc-tag">Growth · Retention Squad · 4 Pathway Leads</div>
+          <div class="tc-name">Retention</div>
+          <div class="tc-desc">One lead per pathway. Owns email journeys, onboarding, consumption rates, upsell sequences, win-back campaigns, and all retention data for the pathway. Works within the email master calendar set by the Organic Email Orchestrator. LTV and retention rate are the numbers.</div>
+          <div class="tc-tags"><span class="tc-tag-pill">Manifesting</span><span class="tc-tag-pill">Entrepreneurship</span><span class="tc-tag-pill">Longevity</span><span class="tc-tag-pill">Speaking</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-arrow"><span class="arr">↓</span> Channel teams execute at scale across all pathways · Briefed by squads</div>
+
+    <div class="tier">
+      <div class="tier-cards cols-2">
+        <div class="tier-card" style="border-top:3px solid var(--organic);">
+          <div class="tc-tag">Channel · Organic · 6 people</div>
+          <div class="tc-name">Organic</div>
+          <div class="tc-desc" style="margin-bottom:10px;">Organic Lead + Social ×3 + SEO Lead + Email Orchestrator. AI handles production volume. Humans own strategy, brand voice, master email calendar, and channel direction. Email Orchestrator holds authority over send frequency — can reject or reschedule sends that breach the master calendar.</div>
+          <div class="tc-tags"><span class="tc-tag-pill">Social ×3</span><span class="tc-tag-pill">SEO</span><span class="tc-tag-pill">Email Orchestration</span><span class="tc-tag-pill">AEO</span><span class="tc-tag-pill">AI Search</span></div>
+        </div>
+        <div class="tier-card" style="border-top:3px solid var(--paid);">
+          <div class="tc-tag">Channel · Paid · 3 people + Scaling path</div>
+          <div class="tc-name">Paid</div>
+          <div class="tc-desc" style="margin-bottom:10px;">Paid Manager + 3 generalist Media Buyers across all platforms. Paid Manager maintains affiliate and partnership relationships until $1M affiliate revenue — at which point a dedicated Partnerships & Affiliates Specialist is hired. Today: Meta, Google, Affiliates. Tomorrow: Google AI Overview ads, ChatGPT/Perplexity placements.</div>
+          <div class="tc-tags"><span class="tc-tag-pill">Meta</span><span class="tc-tag-pill">Google</span><span class="tc-tag-pill">Affiliates</span><span class="tc-tag-pill">AI Overview Ads</span><span class="tc-tag-pill">ChatGPT Ads →</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORG CHART -->
+<section class="sec" id="structure">
+  <div class="sec-hd"><span class="sec-n">02</span><h2 class="sec-t">Full Org <em>Chart</em></h2><div class="sec-rule"></div></div>
+  <div class="org-scroll">
+    <div class="org-tree">
+
+      <div class="cgo-node">
+        <div class="cgo-tag">Chief Growth Officer</div>
+        <div class="cgo-name">Marisha Lakhiani</div>
+      </div>
+      <div class="vl"></div>
+      <div class="hrail"></div>
+
+      <div class="branches">
+
+        <!-- Rafay -->
+        <div class="branch" style="max-width:160px;">
+          <div class="vl-dash"></div>
+          <div class="onode gm">
+            <div class="dashed-badge">Dotted · CEO</div>
+            <div class="on-tag">General Manager</div>
+            <div class="on-name">Rafay Sattar</div>
+            <div class="on-sub">Membership</div>
+          </div>
+        </div>
+
+        <!-- Jaideep -->
+        <div class="branch" style="max-width:160px;">
+          <div class="vl-dash"></div>
+          <div class="onode gm">
+            <div class="dashed-badge">Dotted · CEO</div>
+            <div class="on-tag">General Manager</div>
+            <div class="on-name">Jaideep Chagger</div>
+            <div class="on-sub">Academy</div>
+          </div>
+        </div>
+
+        <!-- Growth -->
+        <div class="branch" style="max-width:400px;min-width:320px;">
+          <div class="vl-sm"></div>
+          <div class="onode growth" style="background:rgba(15,61,82,0.04);">
+            <div class="on-tag">Head of Growth</div>
+            <div class="on-name">New · On Probation</div>
+            <div class="on-sub">Acquisition Squad · Retention Squad</div>
+          </div>
+          <div class="vl-sm"></div>
+          <div class="squad-pair">
+            <div class="squad-col">
+              <div class="vl-sm"></div>
+              <div class="squad-node" style="border-top:2px solid var(--acq);">
+                <div class="sq-head">Squad</div>
+                <div class="sq-title">Acquisition</div>
+                <div class="pway"><span class="pway-n">Manifesting</span><span class="pway-t">Lead</span></div>
+                <div class="pway"><span class="pway-n">Entrepreneurship</span><span class="pway-t">Lead</span></div>
+                <div class="pway"><span class="pway-n">Longevity</span><span class="pway-t">Lead</span></div>
+                <div class="pway"><span class="pway-n">Speaking</span><span class="pway-t">Lead</span></div>
+              </div>
+            </div>
+            <div class="squad-col">
+              <div class="vl-sm"></div>
+              <div class="squad-node" style="border-top:2px solid var(--ret);">
+                <div class="sq-head">Squad</div>
+                <div class="sq-title">Retention</div>
+                <div class="pway"><span class="pway-n">Manifesting</span><span class="pway-t">Lead</span></div>
+                <div class="pway"><span class="pway-n">Entrepreneurship</span><span class="pway-t">Lead</span></div>
+                <div class="pway"><span class="pway-n">Longevity</span><span class="pway-t">Lead</span></div>
+                <div class="pway"><span class="pway-n">Speaking</span><span class="pway-t">Lead</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Organic -->
+        <div class="branch" style="max-width:170px;">
+          <div class="vl-sm"></div>
+          <div class="onode organic" style="background:rgba(15,61,40,0.04);">
+            <div class="on-tag">Function</div>
+            <div class="on-name">Organic</div>
+            <div class="on-sub">SEO · Social · Email</div>
+          </div>
+          <div class="vl-sm"></div>
+          <div class="sub-stack">
+            <div class="sub-node">Organic Lead</div>
+            <div class="sub-node">Social ×3</div>
+            <div class="sub-node">SEO Lead</div>
+            <div class="sub-node">Email Orchestrator</div>
+          </div>
+        </div>
+
+        <!-- Paid -->
+        <div class="branch" style="max-width:160px;">
+          <div class="vl-sm"></div>
+          <div class="onode paid" style="background:rgba(61,42,15,0.04);">
+            <div class="on-tag">Function</div>
+            <div class="on-name">Paid</div>
+            <div class="on-sub">Meta · Google · Affiliates</div>
+          </div>
+          <div class="vl-sm"></div>
+          <div class="sub-stack">
+            <div class="sub-node">Paid Manager</div>
+            <div class="sub-node">Media Buyer</div>
+            <div class="sub-node">Media Buyer</div>
+            <div class="sub-node">Media Buyer</div>
+            <div class="sub-node highlight">Partnerships Specialist →$1M</div>
+          </div>
+        </div>
+
+        <!-- MarTech -->
+        <div class="branch" style="max-width:155px;">
+          <div class="vl-sm"></div>
+          <div class="onode martech" style="background:rgba(15,42,61,0.04);">
+            <div class="on-tag">Reports to CGO</div>
+            <div class="on-name">Data & MarTech</div>
+            <div class="on-sub">Serves all functions</div>
+          </div>
+          <div class="vl-sm"></div>
+          <div class="sub-stack">
+            <div class="sub-node">MarTech Lead</div>
+            <div class="sub-node">Automation Engineer</div>
+            <div class="sub-node">Data Analyst ×2</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCTIONS -->
+<section class="sec" id="functions">
+  <div class="sec-hd"><span class="sec-n">03</span><h2 class="sec-t">What Each Team <em>Owns</em></h2><div class="sec-rule"></div></div>
+  <div class="two-col" style="margin-bottom:1px;">
+    <div class="tcell" style="border-top:3px solid #c45c5c;">
+      <div class="tcell-tag">Rafay Sattar · GM Membership</div>
+      <div class="tcell-title">Full commercial ownership of Membership as a business unit</div>
+      <ul>
+        <li>Scale strategy to 1M subscribers — what's the model, what's the timeline, what changes to get there</li>
+        <li>Product vision — what does Membership look like in 12 and 24 months: format, features, content model, subscription design</li>
+        <li>Directs Product on Membership features — this is a commercial director decision, not a marketing request</li>
+        <li>Author and talent pipeline — which teachers, which topics, which pathways expand and when</li>
+        <li>Pricing and offer architecture — what does a subscription include, how is it structured, what are the upsells</li>
+        <li>Channel and partnership strategy — which channels drive Membership growth, who are the right influencers and partners</li>
+        <li>Commercial health — refund rates, cancellations, NPS, customer interviews, churn signals</li>
+        <li>Briefs Growth squads on Membership priorities; works with Head of Growth to ensure dissemination</li>
+        <li>Customer insight — does customer interviews, monitors support data, feeds insight back into product and marketing</li>
+      </ul>
+    </div>
+    <div class="tcell" style="border-top:3px solid #4a7ca4;">
+      <div class="tcell-tag">Jaideep Chagger · GM Academy</div>
+      <div class="tcell-title">Full commercial ownership of Academy as a business unit</div>
+      <ul>
+        <li>Summit model — what's the model, what are we adding, changing, how do we drive better conversion</li>
+        <li>Which Mastery and Accelerator programs to launch, retire, or rebuild — with commercial rationale</li>
+        <li>Offer architecture — pricing, bundling, upsell/downsell sequencing across Quest, Accelerator, Mastery</li>
+        <li>Author selection with a commercial lens — audience size, lead quality, conversion track record</li>
+        <li>Cold audience acquisition strategy for Mastery — funnels, channels, economics for net-new buyers</li>
+        <li>B2B channel for Mastery — corporate sales of Academy programs as employee development</li>
+        <li>Influencer and partnership strategy for pathway launches</li>
+        <li>Commercial health — refund rates, cancellations, conversion benchmarks, sales process quality</li>
+        <li>What can we learn from other models — active competitor and market intelligence</li>
+        <li>Briefs Growth squads on Academy launch calendar and priorities</li>
+      </ul>
+    </div>
+  </div>
+  <div class="two-col" style="margin-bottom:1px;">
+    <div class="tcell" style="border-top:3px solid var(--acq);">
+      <div class="tcell-tag">Acquisition Squad · 4 Pathway Leads</div>
+      <div class="tcell-title">Execute acquisition for their pathway. Own the revenue number.</div>
+      <ul>
+        <li>Receives commercial brief from Jaideep (Academy) or Rafay (Membership) via Head of Growth</li>
+        <li>Ad creative strategy — angles, hooks, formats for this pathway's audience</li>
+        <li>Audience testing — highest-value segments across paid and organic channels</li>
+        <li>Funnel strategy — Masterclass, VR cell, webinar, direct offer. Choose, test, optimise</li>
+        <li>Summit launches end to end — strategy, promotional plan, conversion targets</li>
+        <li>Accelerator launches — GTM, offer positioning, full promotional calendar</li>
+        <li>Briefs Paid team on spend strategy; briefs Organic on content needs</li>
+        <li>Budget allocation is earned: ROAS must justify spend. Work with Paid Manager and Head of Growth if ROAS is underperforming</li>
+      </ul>
+    </div>
+    <div class="tcell" style="border-top:3px solid var(--ret);">
+      <div class="tcell-tag">Retention Squad · 4 Pathway Leads</div>
+      <div class="tcell-title">Own the customer after purchase. Own LTV and retention rate.</div>
+      <ul>
+        <li>Receives commercial brief and retention priorities from Rafay or Jaideep via Head of Growth</li>
+        <li>Email journey architecture — every trigger, segment, and nurture flow for the pathway</li>
+        <li>Onboarding strategy — days 1, 7, 14, 30 after purchase</li>
+        <li>Consumption and completion rate optimisation</li>
+        <li>Reactivation and win-back for lapsed members</li>
+        <li>Upsell sequences: Quest → Accelerator → Mastery at the right moment</li>
+        <li>Cross-sell into adjacent pathways</li>
+        <li>Executes within the master email calendar set by Email Orchestrator — coordinate, don't override</li>
+        <li>Returns all retention data to Head of Growth and GMs</li>
+      </ul>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="tcell" style="border-top:3px solid var(--organic);">
+      <div class="tcell-tag">Organic Team · 6 people</div>
+      <div class="tcell-title">Organic channels at scale. AI produces. Humans direct.</div>
+      <ul>
+        <li><strong>Organic Lead:</strong> Sets strategy across all organic channels. Manages 5 direct reports. Owns organic acquisition KPIs</li>
+        <li><strong>Social ×3:</strong> Instagram, YouTube, TikTok, LinkedIn. Platform strategy and community. AI handles scheduling and caption variants</li>
+        <li><strong>SEO Lead:</strong> Strategic and technically literate. Keyword strategy, content direction, tech SEO, Engineering liaison. AI writes, human directs</li>
+        <li><strong>Email Orchestrator:</strong> Holds the master calendar. Sets email DNA — frequency, tone, journey architecture. Has authority to reject or reschedule sends from any team that breach the calendar. Pathway retention leads execute within this framework</li>
+        <li>AEO and AI search visibility built into SEO Lead's remit as these channels mature</li>
+      </ul>
+    </div>
+    <div class="tcell" style="border-top:3px solid var(--paid);">
+      <div class="tcell-tag">Paid Team · 3 people + scaling path</div>
+      <div class="tcell-title">Performance at scale. Briefed by Acquisition Leads. ROAS is the discipline.</div>
+      <ul>
+        <li><strong>Paid Manager:</strong> Cross-pathway spend strategy, budget allocation, channel mix, ROAS targets. Also maintains affiliate relationships until $1M revenue milestone</li>
+        <li><strong>Media Buyer × 3:</strong> Generalist buyers across all platforms — Meta, Google, YouTube, and emerging channels. Each buyer manages campaigns across the full channel mix rather than specialising</li>
+        <li>Budget governance: pathway leads earn spend by improving ROAS. Paid Manager + Head of Growth arbitrate allocation. Healthy tension by design</li>
+        <li><strong>Partnerships & Affiliates Specialist</strong> hired at $1M affiliate revenue — until then maintained by Paid Manager</li>
+        <li>Frontier: actively testing Google AI Overview ads, ChatGPT/Perplexity placements as they open up</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- JDs -->
+<section class="sec" id="jds">
+  <div class="sec-hd"><span class="sec-n">04</span><h2 class="sec-t">Role <em>Briefs</em></h2><div class="sec-rule"></div></div>
+
+  <div class="jd-tabs">
+    <div class="jd-tab active" onclick="showJD('rafay',this)">Rafay — Membership GM</div>
+    <div class="jd-tab" onclick="showJD('jaideep',this)">Jaideep — Academy GM</div>
+    <div class="jd-tab" onclick="showJD('hog',this)">Head of Growth</div>
+    <div class="jd-tab" onclick="showJD('acq',this)">Acquisition Lead</div>
+    <div class="jd-tab" onclick="showJD('ret',this)">Retention Lead</div>
+    <div class="jd-tab" onclick="showJD('organic',this)">Organic Lead</div>
+    <div class="jd-tab" onclick="showJD('paid',this)">Paid Manager</div>
+  </div>
+
+  <!-- RAFAY -->
+  <div class="jd-panel active" id="jd-rafay">
+    <div class="jd-card">
+      <div class="jd-header">
+        <div>
+          <div class="jd-role-type">General Manager · Reports to CEO · Works daily with CGO</div>
+          <div class="jd-role-title">Rafay Sattar<br><em>General Manager, Membership</em></div>
+        </div>
+        <div class="jd-chips">
+          <div class="jd-chip">Business Unit Owner</div>
+          <div class="jd-chip">P&L Accountable</div>
+          <div class="jd-chip">Reports to CEO</div>
+        </div>
+      </div>
+      <div class="jd-body">
+        <div class="jd-lede">You are the commercial owner of Mindvalley's Membership business — the subscription product that is the foundation of the entire ecosystem. You are not a marketing director. You are a mini-CEO for Membership: you own the vision, the product, the commercial model, the growth strategy, and the P&L. You work daily with Marisha (CGO) on strategy and execution alignment, and you report to Vishen.</div>
+
+        <div style="margin-bottom:32px;">
+          <div class="jd-sec">2026 Mandates</div>
+          <div class="jd-mandate"><div class="jd-mandate-n">01</div><div class="jd-mandate-title">Scale to 1 Million Subscribers</div><div class="jd-mandate-body">Define the strategy that gets Membership from where it is today to 1M subscribers. What acquisition model, what pricing, what product changes, what channels, what partnerships make this possible? This is not a future-state objective — it starts now.</div></div>
+          <div class="jd-mandate"><div class="jd-mandate-n">02</div><div class="jd-mandate-title">Design the Future of Membership</div><div class="jd-mandate-body">What does a Mindvalley subscription look like in 2027? Is it vertical video? Is it live? What features does it have? What outcomes does it deliver? You direct Product on the roadmap. You do the customer interviews. You define what superior looks like and make sure it ships.</div></div>
+          <div class="jd-mandate"><div class="jd-mandate-n">03</div><div class="jd-mandate-title">Fix Commercial Fundamentals</div><div class="jd-mandate-body">Refund rates, cancellation signals, pricing architecture, and NPS are all commercial levers. You audit them, diagnose the root causes, and rebuild where needed. A high refund rate is not a customer service problem — it is a product and commercial problem.</div></div>
+        </div>
+
+        <div class="jd-cols">
+          <div>
+            <div class="jd-sec">What You Own</div>
+            <ul class="jd-list">
+              <li>Membership P&L — revenue, margin, subscriber growth, and profitability</li>
+              <li>Product vision and subscription design — format, features, content model, user experience</li>
+              <li>Author and talent pipeline — which teachers, which topics, which pathways expand and in what sequence</li>
+              <li>Pricing and offer architecture — what the subscription includes, how it's structured, what the upsells are</li>
+              <li>Channel strategy — which channels, what mix, what role influencers and affiliates play</li>
+              <li>Partnership strategy — which brand and distribution partnerships accelerate Membership growth</li>
+              <li>Customer intelligence — customer interviews, support data analysis, churn signal monitoring</li>
+              <li>Commercial health — refund rates, cancellations, NPS. Own the numbers, explain the trends, take action</li>
+              <li>Brief Growth squads on Membership priorities; validate that execution matches the vision</li>
+            </ul>
+          </div>
+          <div>
+            <div class="jd-sec">What This Role Is Not</div>
+            <ul class="not-list">
+              <li>Not executing campaigns — Growth squads do that</li>
+              <li>Not running ads or managing channels — Organic and Paid teams do that</li>
+              <li>Not a people manager within Marketing — this is a cross-functional commercial role</li>
+            </ul>
+            <div class="jd-sec" style="margin-top:24px;">What Success Looks Like</div>
+            <ul class="jd-list">
+              <li>Clear, written strategy for reaching 1M subscribers — reviewed quarterly</li>
+              <li>Membership revenue and subscriber growth trending up every quarter</li>
+              <li>Retention rate moving toward 45%+ with a plan behind it</li>
+              <li>Product roadmap that's driven by commercial intelligence, not internal preference</li>
+              <li>NPS improving. Refund rate declining. Both with clear diagnosis of what changed</li>
+              <li>Author pipeline that keeps Membership differentiated and commercially fresh</li>
+            </ul>
+          </div>
+        </div>
+        <div class="jd-sec">Key Metrics</div>
+        <div class="jd-metrics">
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Membership Revenue & Margin</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Subscriber Growth Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Subscriber Retention Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Refund & Cancellation Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Member NPS</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">LTV by Pathway</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAIDEEP -->
+  <div class="jd-panel" id="jd-jaideep">
+    <div class="jd-card">
+      <div class="jd-header">
+        <div>
+          <div class="jd-role-type">General Manager · Reports to CEO · Works daily with CGO</div>
+          <div class="jd-role-title">Jaideep Chagger<br><em>General Manager, Academy</em></div>
+        </div>
+        <div class="jd-chips">
+          <div class="jd-chip">Business Unit Owner</div>
+          <div class="jd-chip">P&L Accountable</div>
+          <div class="jd-chip">Summit Model Owner</div>
+          <div class="jd-chip">Reports to CEO</div>
+        </div>
+      </div>
+      <div class="jd-body">
+        <div class="jd-lede">You are the commercial owner of Mindvalley's Academy — the home of pathway programs, Mastery, Accelerators, Certifications, and the Summit model. You own the full commercial arc: what programs get built or retired, how they're priced and sequenced, how buyers are acquired (from members and cold audiences), how the sales process converts, and how commercial health is maintained and improved. You work daily with Marisha (CGO) and report to Vishen.</div>
+
+        <div style="margin-bottom:32px;">
+          <div class="jd-sec">2026 Mandates — drawn from Director brief</div>
+          <div class="jd-mandate"><div class="jd-mandate-n">01</div><div class="jd-mandate-title">Build the Cold Audience Engine for Mastery</div><div class="jd-mandate-body">Right now Mastery is sold almost entirely to existing Mindvalley members. That's a ceiling. Design and test the acquisition model that brings net-new buyers into Mastery — people who have never been a member. This starts now.</div></div>
+          <div class="jd-mandate"><div class="jd-mandate-n">02</div><div class="jd-mandate-title">Launch and Scale B2B for Mastery</div><div class="jd-mandate-body">Define the offer, the go-to-market, and the first revenue targets for selling Mastery programs to companies — as employee development, leadership programs, or wellness initiatives. Build the B2B channel from scratch.</div></div>
+          <div class="jd-mandate"><div class="jd-mandate-n">03</div><div class="jd-mandate-title">Fix the Summit Model and Commercial Fundamentals</div><div class="jd-mandate-body">What's working in the Summit model, what isn't, what are we adding, changing, retiring? Pricing architecture, upsell sequencing, refund rate reduction, and sales process quality all need a sharp commercial mind applied to them. Study what other models do well.</div></div>
+        </div>
+
+        <div class="jd-cols">
+          <div>
+            <div class="jd-sec">What You Own</div>
+            <ul class="jd-list">
+              <li>Academy P&L — revenue and margin across Mastery, Accelerators, and Certifications</li>
+              <li>Program portfolio — which programs to build, sequence, or retire. With commercial rationale, always</li>
+              <li>Summit model — positioning, offer structure, sales pitch, conversion rate, and close</li>
+              <li>Offer and pricing architecture — Quest, Accelerator, Mastery tiers, bundles, upsells, downsells</li>
+              <li>Author selection — chosen with a commercial lens: audience, lead quality, conversion track record</li>
+              <li>Cold audience acquisition strategy — funnels, channels, and economics for Mastery</li>
+              <li>B2B channel — corporate sales of Mastery programs</li>
+              <li>Influencer and partnership strategy for pathway launches</li>
+              <li>Commercial health — refund rates, cancellations, Summit conversion, sales process quality</li>
+              <li>Competitive and market intelligence — what can we learn from other models</li>
+              <li>Briefs Growth squads on Academy priorities and launch calendar</li>
+            </ul>
+          </div>
+          <div>
+            <div class="jd-sec">What This Role Is Not</div>
+            <ul class="not-list">
+              <li>Not running paid media — Ads team executes that</li>
+              <li>Not owning Membership acquisition or retention</li>
+              <li>Not managing events production and logistics</li>
+              <li>Not making headcount decisions within Marketing</li>
+            </ul>
+            <div class="jd-sec" style="margin-top:24px;">What Success Looks Like</div>
+            <ul class="jd-list">
+              <li>Academy revenue growing with clear pathway-by-pathway attribution</li>
+              <li>Launch calendar always 6+ weeks ahead with commercially solid strategies behind each launch</li>
+              <li>Summit conversion rate improving quarter-on-quarter with documented changes driving it</li>
+              <li>Cold audience revenue line existing and growing by Q3 2026</li>
+              <li>First B2B revenue by Q4 2026</li>
+              <li>Refund rate declining with root-cause diagnosis</li>
+            </ul>
+          </div>
+        </div>
+        <div class="jd-sec">Key Metrics</div>
+        <div class="jd-metrics">
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Academy Revenue by Pathway</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Academy Margin</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Summit Conversion Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Cold Audience Revenue</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Academy Refund Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">B2B Revenue</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEAD OF GROWTH -->
+  <div class="jd-panel" id="jd-hog">
+    <div class="jd-card">
+      <div class="jd-header">
+        <div>
+          <div class="jd-role-type">Growth Function · Reports to CGO · Linchpin Role</div>
+          <div class="jd-role-title">Head of Growth<br><em>The Operating Layer</em></div>
+        </div>
+        <div class="jd-chips">
+          <div class="jd-chip">Manages 8 Pathway Leads</div>
+          <div class="jd-chip">Critical Hire</div>
+          <div class="jd-chip">Operator, Not Relay</div>
+        </div>
+      </div>
+      <div class="jd-body">
+        <div class="jd-lede">This is the role the entire model depends on. You sit between the General Managers (Rafay, Jaideep) and the 8 pathway leads. Your job is not to relay messages — it is to translate commercial strategy into execution plans with owners, deadlines, and success metrics, and then hold the team to them. If you are a bottleneck or a passive coordinator, the model breaks.</div>
+
+        <div class="risk-box" style="margin-bottom:32px;">
+          <div class="risk-title">The Probation Stakes</div>
+          <div class="risk-body">This role is filled but new — and the probation period is the highest-stakes one in the org. The model is being designed around the assumption that this seat works. The 30-day and 60-day checkpoints are not formalities. They are the early warning system for whether the operating layer is functioning or whether the CGO is absorbing execution burden that should sit here.</div>
+        </div>
+
+        <div class="jd-cols">
+          <div>
+            <div class="jd-sec">What You Own</div>
+            <ul class="jd-list">
+              <li>Translate strategy briefs from Rafay and Jaideep into 30-day execution plans with named owners and deadlines</li>
+              <li>Manage 8 pathway leads (4 Acquisition, 4 Retention) — weekly 1:1s, performance reviews, unblocking</li>
+              <li>Run the Growth operating cadence — weekly squad reviews that produce decisions, not status updates</li>
+              <li>Make the 80% of day-to-day decisions that don't need CGO involvement</li>
+              <li>Identify when a pathway is underperforming and drive the diagnosis and response</li>
+              <li>Work with Paid Manager on budget allocation — arbitrate pathway spend requests with ROAS data</li>
+              <li>Surface the right information upward: what the GMs and CGO need to know, not everything</li>
+            </ul>
+          </div>
+          <div>
+            <div class="jd-sec">The Test for This Person</div>
+            <ul class="jd-list">
+              <li>Does the team move faster when they are in the room?</li>
+              <li>Can they receive a vague strategy direction and return with a clear execution plan within 48 hours?</li>
+              <li>Are they comfortable telling a pathway lead their funnel isn't working — with data and a proposed fix?</li>
+              <li>Do they create accountability without the CGO being present?</li>
+              <li>Do they think in outcomes, not activities?</li>
+            </ul>
+            <div class="jd-sec" style="margin-top:24px;">Who Does Not Work Here</div>
+            <ul class="not-list">
+              <li>Strategists who can't execute</li>
+              <li>Project managers who track but don't lead</li>
+              <li>People pleasers who avoid hard conversations</li>
+              <li>Those who need the CGO in every important meeting</li>
+            </ul>
+          </div>
+        </div>
+        <div class="jd-sec">Key Metrics</div>
+        <div class="jd-metrics">
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Growth Revenue (all pathways)</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Pathway Retention Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Execution Velocity</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Team Performance vs Targets</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Brief-to-Live Speed</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Escalations to CGO (fewer = better)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACQUISITION -->
+  <div class="jd-panel" id="jd-acq">
+    <div class="jd-card">
+      <div class="jd-header">
+        <div>
+          <div class="jd-role-type">Growth · Acquisition Squad · ×4 roles</div>
+          <div class="jd-role-title">Pathway Acquisition Lead<br><em>[Manifesting / Entrepreneurship / Longevity / Speaking]</em></div>
+        </div>
+        <div class="jd-chips">
+          <div class="jd-chip">Full-Funnel Owner</div>
+          <div class="jd-chip">Revenue Accountable</div>
+          <div class="jd-chip">AI-Augmented</div>
+        </div>
+      </div>
+      <div class="jd-body">
+        <div class="jd-lede">You receive the commercial brief and turn it into a winning acquisition strategy for your pathway. You own everything that brings new people in — ads, audiences, funnels, summits, accelerator launches — and you own the revenue number that proves it's working. AI handles production. You direct it.</div>
+        <div class="jd-cols">
+          <div>
+            <div class="jd-sec">What You Own</div>
+            <ul class="jd-list">
+              <li>Ad creative strategy — concepting angles, hooks, and messaging that convert for this pathway's audience</li>
+              <li>Audience testing — identifying and iterating on highest-value segments</li>
+              <li>Funnel strategy — Masterclass, VR cell, webinar, direct offer. You choose, test, and optimise</li>
+              <li>Summit launches end to end — strategy, promotional plan, conversion goals</li>
+              <li>Accelerator launches — GTM, offer positioning, full promotional calendar</li>
+              <li>All other acquisition activity for the pathway</li>
+              <li>Brief Paid team on spend strategy and audience targeting</li>
+              <li>Budget is earned by ROAS: work with Paid Manager and Head of Growth to justify spend increases</li>
+            </ul>
+          </div>
+          <div>
+            <div class="jd-sec">How You Work</div>
+            <ul class="jd-list">
+              <li>Receive brief from Jaideep (Academy) or Rafay (Membership) via Head of Growth</li>
+              <li>Own the plan — you bring the execution strategy, not just the tasks</li>
+              <li>Brief Paid buyers; don't manage accounts day-to-day</li>
+              <li>Use AI for copy, creative briefs, landing page variants — your job is direction and judgment</li>
+              <li>Weekly review with Head of Growth and shared Data Analysts</li>
+            </ul>
+            <div class="jd-sec" style="margin-top:24px;">Who Thrives Here</div>
+            <ul class="jd-list">
+              <li>Has run acquisition funnels — knows a Masterclass funnel end to end</li>
+              <li>Strong creative instincts — can brief an ad and know if the hook is right</li>
+              <li>Data-driven: uses numbers to decide, not to justify retroactively</li>
+              <li>Can project-manage a full summit launch without hand-holding</li>
+            </ul>
+          </div>
+        </div>
+        <div class="jd-sec">Key Metrics</div>
+        <div class="jd-metrics">
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Pathway Acquisition Revenue</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Cost per Acquisition</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Lead → Purchase Conversion</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Masterclass Show-Up Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Summit Revenue</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">ROAS by Channel</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RETENTION -->
+  <div class="jd-panel" id="jd-ret">
+    <div class="jd-card">
+      <div class="jd-header">
+        <div>
+          <div class="jd-role-type">Growth · Retention Squad · ×4 roles</div>
+          <div class="jd-role-title">Pathway Retention Lead<br><em>[Manifesting / Entrepreneurship / Longevity / Speaking]</em></div>
+        </div>
+        <div class="jd-chips">
+          <div class="jd-chip">Lifecycle Owner</div>
+          <div class="jd-chip">LTV Accountable</div>
+          <div class="jd-chip">Data-Led</div>
+        </div>
+      </div>
+      <div class="jd-body">
+        <div class="jd-lede">You own the customer after they buy. You architect every email journey, onboarding sequence, upsell flow, and win-back campaign for your pathway. You own the data that proves it's working. You execute within the master email calendar set by the Email Orchestrator — and you help make it better.</div>
+        <div class="jd-cols">
+          <div>
+            <div class="jd-sec">What You Own</div>
+            <ul class="jd-list">
+              <li>Email journey architecture — every trigger, segment, and nurture flow for the pathway</li>
+              <li>Onboarding strategy — days 1, 7, 14, 30 after purchase</li>
+              <li>Consumption and completion rate optimisation</li>
+              <li>Reactivation and win-back campaigns for lapsed or churned members</li>
+              <li>Upsell sequences: Quest → Accelerator → Mastery at the right moment</li>
+              <li>Cross-sell into adjacent pathways when the timing is right</li>
+              <li>All retention data for the pathway — own the numbers, explain the trends</li>
+            </ul>
+          </div>
+          <div>
+            <div class="jd-sec">How You Work</div>
+            <ul class="jd-list">
+              <li>Receive brief from GM via Head of Growth</li>
+              <li>Work with MarTech team and Automation Engineer to build and automate flows</li>
+              <li>Coordinate sends with Email Orchestrator — she holds the master calendar and can block or reschedule</li>
+              <li>Brief Data Analysts on cohort and behavioural data you need</li>
+              <li>Use AI for copy, subject line variants, sequence drafts</li>
+            </ul>
+            <div class="jd-sec" style="margin-top:24px;">Who Thrives Here</div>
+            <ul class="jd-list">
+              <li>Has built email journeys from scratch — knows a nurture from a win-back</li>
+              <li>Thinks in customer psychology: days 3, 30, 90 after purchase</li>
+              <li>Can read a cohort analysis and build a campaign around what it shows</li>
+              <li>Treats retention as a growth lever, not a support function</li>
+            </ul>
+          </div>
+        </div>
+        <div class="jd-sec">Key Metrics</div>
+        <div class="jd-metrics">
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Pathway Retention Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Member LTV by Pathway</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Quest → Accelerator Conversion</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">30-Day Content Consumption</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Email OR / CTR</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Reactivation Rate</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORGANIC LEAD -->
+  <div class="jd-panel" id="jd-organic">
+    <div class="jd-card">
+      <div class="jd-header">
+        <div>
+          <div class="jd-role-type">Organic Function · 6-person team</div>
+          <div class="jd-role-title">Organic Lead</div>
+        </div>
+        <div class="jd-chips">
+          <div class="jd-chip">Multi-Channel</div>
+          <div class="jd-chip">AI-Native Team</div>
+          <div class="jd-chip">5 Direct Reports</div>
+        </div>
+      </div>
+      <div class="jd-body">
+        <div class="jd-lede">You lead Mindvalley's organic growth engine across social, SEO, and email. Your team of 6 operates above its weight because AI handles production volume — your job is strategy, brand voice, and channel direction. You own organic as both an acquisition and a brand-building channel, and you're building for a world where AI search (AEO) is as important as Google.</div>
+        <div class="jd-cols">
+          <div>
+            <div class="jd-sec">What You Own</div>
+            <ul class="jd-list">
+              <li>Organic strategy across all channels — what we say, where, how we measure it</li>
+              <li>Social ×3: platform strategy (Instagram, YouTube, TikTok, LinkedIn), content calendar, community direction. AI handles scheduling and variants</li>
+              <li>SEO Lead: keyword strategy, content direction, technical SEO, Engineering liaison. AI writes, human directs. AEO and AI search visibility built into remit</li>
+              <li>Email Orchestrator: master email calendar, send frequency governance, email DNA. Has authority to reject or reschedule sends from any team. Coordinates with Retention Leads — does not override pathway-level lifecycle strategy, but sets the rules of the road</li>
+              <li>Organic acquisition KPIs: traffic, leads, follower growth, email list growth</li>
+            </ul>
+          </div>
+          <div>
+            <div class="jd-sec">Who Thrives Here</div>
+            <ul class="jd-list">
+              <li>Has led a multi-channel organic team and knows how to prioritise across competing demands</li>
+              <li>Strong editorial instincts — knows what builds trust over time vs. what chases the algorithm</li>
+              <li>Understands SEO, social, and email well enough to coach specialists in each</li>
+              <li>Comfortable with AI-augmented workflows — sees it as leverage</li>
+              <li>Thinks about AEO and AI search not as future concepts but as current priorities</li>
+            </ul>
+          </div>
+        </div>
+        <div class="jd-sec">Key Metrics</div>
+        <div class="jd-metrics">
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Organic Lead Volume</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Organic Traffic Growth</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Email List Growth Rate</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Social Follower Growth</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">SEO Keyword Rankings</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Engagement Rate by Platform</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAID MANAGER -->
+  <div class="jd-panel" id="jd-paid">
+    <div class="jd-card">
+      <div class="jd-header">
+        <div>
+          <div class="jd-role-type">Paid Function · 3-person team + scaling path</div>
+          <div class="jd-role-title">Paid Media Manager</div>
+        </div>
+        <div class="jd-chips">
+          <div class="jd-chip">ROAS Target Owner</div>
+          <div class="jd-chip">Manages Affiliates (interim)</div>
+          <div class="jd-chip">Future-Ready Channels</div>
+        </div>
+      </div>
+      <div class="jd-body">
+        <div class="jd-lede">You own Mindvalley's paid media operation — today across Meta, Google, and Affiliates; tomorrow across AI Overview ads, ChatGPT/Perplexity placements, and whatever paid channels the next wave of AI-native discovery opens up. You receive strategy briefs from Acquisition Leads and execute with precision. You also hold the affiliate and partnership relationships until the channel reaches $1M revenue, at which point a dedicated hire is made.</div>
+        <div class="jd-cols">
+          <div>
+            <div class="jd-sec">What You Own</div>
+            <ul class="jd-list">
+              <li>Cross-pathway paid strategy — budget allocation, channel mix, spend pacing, ROAS targets</li>
+              <li>Media Buyer × 3 — generalist buyers across all channels: Meta, Google, YouTube, affiliates, and emerging platforms</li>
+              <li>Affiliate relationships — recruit, manage, and grow the affiliate network until $1M revenue milestone</li>
+              <li>Budget governance: works with Head of Growth to arbitrate pathway spend requests. Pathway leads earn budget by improving ROAS</li>
+              <li>Frontier channels: actively testing Google AI Overview ads, ChatGPT/Perplexity placements</li>
+            </ul>
+          </div>
+          <div>
+            <div class="jd-sec">The Scaling Path</div>
+            <ul class="jd-list">
+              <li>At $1M affiliate revenue: Partnerships & Affiliates Specialist hired as 4th team member</li>
+              <li>At that point Paid Manager focuses entirely on paid performance; affiliates and partnerships move to the specialist</li>
+              <li>New channel growth (AI ads, emerging platforms) may warrant additional buyer over time</li>
+            </ul>
+            <div class="jd-sec" style="margin-top:24px;">Who Thrives Here</div>
+            <ul class="jd-list">
+              <li>Has managed meaningful paid budgets across Meta and Google</li>
+              <li>Understands affiliate and performance partnership models</li>
+              <li>Early adopter mentality on AI-native advertising channels</li>
+              <li>Strong analytical — lives in data, optimises relentlessly</li>
+            </ul>
+          </div>
+        </div>
+        <div class="jd-sec">Key Metrics</div>
+        <div class="jd-metrics">
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Overall Paid ROAS</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Blended CPA</div></div>
+          <div class="jd-metric"><div class="jm-label">Primary</div><div class="jm-val">Paid Revenue by Pathway</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Affiliate Revenue</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">Spend Efficiency by Channel</div></div>
+          <div class="jd-metric"><div class="jm-label">Secondary</div><div class="jm-val">New Channel Test Results</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- HEADCOUNT -->
+<section class="sec" id="headcount">
+  <div class="sec-hd"><span class="sec-n">05</span><h2 class="sec-t"><em>Headcount</em> Summary</h2><div class="sec-rule"></div></div>
+  <div class="hc-grid">
+    <div class="hc-cell"><div class="hc-label">Head of Growth</div><div class="hc-num">1</div><div class="hc-desc">Critical hire · linchpin role</div></div>
+    <div class="hc-cell"><div class="hc-label">Acquisition Squad</div><div class="hc-num">4</div><div class="hc-desc">1 lead per pathway</div></div>
+    <div class="hc-cell"><div class="hc-label">Retention Squad</div><div class="hc-num">4</div><div class="hc-desc">1 lead per pathway</div></div>
+    <div class="hc-cell"><div class="hc-label">Organic Team</div><div class="hc-num">5</div><div class="hc-desc">Lead + Social ×3 + SEO + Email</div></div>
+    <div class="hc-cell"><div class="hc-label">Paid Team</div><div class="hc-num">4</div><div class="hc-desc">Manager + 3 media buyers · +1 at $1M affiliates</div></div>
+  </div>
+  <div class="hc-grid" style="grid-template-columns:1fr 1fr 1fr;margin-top:1px;">
+    <div class="hc-cell"><div class="hc-label">Data & MarTech</div><div class="hc-num">4</div><div class="hc-desc">Reports to CGO · serves all functions</div></div>
+    <div class="hc-cell gold"><div class="hc-label">Rafay — GM Membership</div><div class="hc-num" style="font-size:22px;margin-top:6px;">Dotted · CEO</div><div class="hc-desc">Not in Marketing headcount</div></div>
+    <div class="hc-cell gold"><div class="hc-label">Jaideep — GM Academy</div><div class="hc-num" style="font-size:22px;margin-top:6px;">Dotted · CEO</div><div class="hc-desc">Not in Marketing headcount</div></div>
+  </div>
+  <div class="hc-total">
+    <div class="hc-total-n">22</div>
+    <div class="hc-total-t">core headcount in Marketing, down from ~44. Higher output per person through AI leverage, pathway-level accountability, and a commercial strategy that is set before execution begins — not discovered during it.</div>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section class="sec" id="risks">
+  <div class="sec-hd"><span class="sec-n">06</span><h2 class="sec-t">Structural <em>Risks</em></h2><div class="sec-rule"></div></div>
+  <p style="font-size:14px;color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:36px;">These are the places where the model is most likely to break. Naming them is not pessimism — it's the prerequisite for managing them.</p>
+
+  <div class="risk-grid">
+    <div class="risk-row">
+      <div><div class="rr-label">Risk 01</div><div class="rr-title">Head of Growth is new and on probation</div><div style="margin-top:8px;"><span class="rr-sev sev-high">High severity</span></div></div>
+      <div class="rr-body">The role is filled but the person is new and has not yet passed probation. This is the highest-stakes probation period in the org — the model is being built around the assumption that this seat works. If the person cannot demonstrate within their probation window that they translate strategy into execution clearly, hold pathway leads accountable, and reduce escalations to the CGO, the entire operating layer is at risk. <strong>The org cannot afford to wait until the end of probation to find out.</strong> Early signals matter: does the team move faster, are decisions being made without the CGO in the room, are pathway leads clear on their priorities?</div>
+      <div><div class="rr-label">Mitigation</div><div style="font-size:11px;color:var(--muted);line-height:1.6;margin-top:4px;">Set explicit 30-day and 60-day checkpoints against clear criteria: execution velocity, quality of briefing to pathway leads, escalations to CGO, and team clarity on priorities. Don't wait for the end of probation to act on weak signals.</div></div>
+    </div>
+    <div class="risk-row">
+      <div><div class="rr-label">Risk 02</div><div class="rr-title">Rafay & Jaideep authority vs. reporting line tension</div><div style="margin-top:8px;"><span class="rr-sev sev-high">High severity</span></div></div>
+      <div class="rr-body">Rafay and Jaideep work daily with the CGO and brief the Growth squads — but report to Vishen. When there's a conflict between what the CGO needs and what Vishen wants, whose direction do the squads follow? And when performance falls short, who has the authority to act? Accountability without authority is a slow-burning problem.</div>
+      <div><div class="rr-label">Mitigation</div><div style="font-size:11px;color:var(--muted);line-height:1.6;margin-top:4px;">Align explicitly with Vishen on decision rights before the org goes live. Document where the CGO has operational authority and where the CEO does.</div></div>
+    </div>
+    <div class="risk-row">
+      <div><div class="rr-label">Risk 03</div><div class="rr-title">Pathway lead seniority vs. role demands</div><div style="margin-top:8px;"><span class="rr-sev sev-high">High severity</span></div></div>
+      <div class="rr-body">Summit launches, funnel architecture, revenue ownership, and audience strategy are not junior tasks. If pathway leads are hired or promoted at the wrong level, they will execute the template but not adapt it when something breaks. The Head of Growth then becomes a full-time firefighter rather than an operator.</div>
+      <div><div class="rr-label">Mitigation</div><div style="font-size:11px;color:var(--muted);line-height:1.6;margin-top:4px;">Keep roles open until the right seniority is found. An empty seat is better than a wrong hire. Interim coverage by Head of Growth.</div></div>
+    </div>
+    <div class="risk-row">
+      <div><div class="rr-label">Risk 04</div><div class="rr-title">Email orchestrator authority is advisory, not binding</div><div style="margin-top:8px;"><span class="rr-sev sev-med">Medium severity</span></div></div>
+      <div class="rr-body">If the Email Orchestrator can only suggest but not block sends, email fatigue will return. Eight pathway leads each with lifecycle flows, plus broadcast emails, plus summit launches, will overwhelm any audience without a single point of governance with actual authority to say no.</div>
+      <div><div class="rr-label">Mitigation</div><div style="font-size:11px;color:var(--muted);line-height:1.6;margin-top:4px;">Formally document the Email Orchestrator's authority in the operating model. She can reject or reschedule sends. This is non-negotiable from day one.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="sec" id="video">
+  <div class="sec-hd"><span class="sec-n">07</span><h2 class="sec-t">Video <em>Function</em></h2><div class="sec-rule"></div></div>
+
+  <p style="font-size:15px;color:var(--muted);max-width:620px;line-height:1.8;margin-bottom:40px;font-weight:300;">Video production sits outside the Marketing org under Gareth. All editors — social media editors and VSL editors — consolidate under Titus as the lead. Marketing briefs Titus; Titus and his team execute.</p>
+
+  <div class="two-col" style="margin-bottom:1px;">
+    <div class="tcell" style="border-top:3px solid var(--gold);">
+      <div class="tcell-tag">Reporting Line · Outside Marketing</div>
+      <div class="tcell-title">Video — Under Gareth</div>
+      <ul>
+        <li><strong>Titus — Video Lead:</strong> Single point of contact for all video production needs from Marketing. Manages the full team of editors, sets production standards, allocates resource across social and VSL briefs</li>
+        <li><strong>Social Media Editors:</strong> Short-form content — Reels, TikToks, YouTube Shorts, social clips. Briefed by the Organic social team and pathway Acquisition Leads on creative direction</li>
+        <li><strong>VSL Editors:</strong> Long-form sales video production — masterclass recordings, sales letters, summit content, ad VSLs. Briefed by Acquisition Leads per pathway</li>
+        <li>All editors consolidated under Titus — no split between departments. One team, one lead, briefed by Marketing as needed</li>
+      </ul>
+    </div>
+    <div class="tcell" style="border-top:3px solid var(--gold-lt);">
+      <div class="tcell-tag">How Marketing Works With Video</div>
+      <div class="tcell-title">Brief Titus, Not the Editors</div>
+      <ul>
+        <li>Acquisition Leads brief Titus on VSL and ad video needs per pathway — format, hook, messaging direction, deadline</li>
+        <li>Organic social team briefs Titus on short-form social content needs — platform, style, reference examples</li>
+        <li>Titus allocates editors and manages the production queue — Marketing does not direct individual editors</li>
+        <li>Video briefs should come with sufficient lead time: VSLs minimum 2 weeks, social edits minimum 5 days</li>
+        <li>Creative direction stays with Marketing. Production execution stays with Titus's team</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="tcell">
+      <div class="tcell-tag">What Moves Out of Marketing</div>
+      <div class="tcell-title">Editors no longer sit in Marketing</div>
+      <ul>
+        <li>Social media editors — previously embedded in or adjacent to the social team — move fully under Titus</li>
+        <li>VSL editors — previously managed ad hoc across campaigns — move fully under Titus</li>
+        <li>This removes production management from Marketing's remit. Pathway leads and the Organic team focus on strategy and creative direction — not chasing edit timelines</li>
+      </ul>
+    </div>
+    <div class="tcell">
+      <div class="tcell-tag">What Stays in Marketing</div>
+      <div class="tcell-title">Creative direction remains here</div>
+      <ul>
+        <li>Script writing and creative briefs for VSLs — owned by Acquisition Leads with AI assistance</li>
+        <li>Social content strategy and platform direction — owned by the Organic social team</li>
+        <li>Approval of final edits before publish — stays with the relevant pathway lead or Organic Lead</li>
+        <li>Performance feedback on video creative — owned by Acquisition Leads and fed back to Titus for future briefs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSITION -->
+<section class="sec" id="transition">
+  <div class="sec-hd"><span class="sec-n">08</span><h2 class="sec-t">Getting <em>There</em></h2><div class="sec-rule"></div></div>
+  <div class="phase-row">
+    <div class="phase-block" style="border-top:3px solid var(--gold);">
+      <div class="phase-n">01</div>
+      <div class="phase-wk">Weeks 1–4</div>
+      <div class="phase-title">Design & Align</div>
+      <div class="phase-body">Finalise the structure and confirm decision rights for Rafay and Jaideep with Vishen. Confirm the Head of Growth situation — is this a new hire or an internal fix? Map current team members to roles. Identify gaps. Plan communications. No surprises.</div>
+    </div>
+    <div class="phase-block" style="border-top:3px solid var(--gold-lt);">
+      <div class="phase-n">02</div>
+      <div class="phase-wk">Weeks 5–10</div>
+      <div class="phase-title">Activate</div>
+      <div class="phase-body">New structure goes live. GMs deliver first strategy briefs to Growth squads via Head of Growth. Email Orchestrator authority formalised. AI workflows deployed in highest-leverage areas first. Parallel ops where needed for live campaigns.</div>
+    </div>
+    <div class="phase-block" style="border-top:3px solid rgba(196,154,42,.35);">
+      <div class="phase-n">03</div>
+      <div class="phase-wk">Weeks 11–16</div>
+      <div class="phase-title">Optimise</div>
+      <div class="phase-body">Full model operating. First quarterly review: pathway revenue by squad, organic and paid efficiency, AI leverage metrics, Head of Growth performance assessment. Tune what isn't working. Identify which pathways need more resource in Q3.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-footer">
+  <div class="df-text">The Pathway Ownership Model — For Discussion</div>
+  <div class="df-meta">Mindvalley · CGO Office · April 2026 · Confidential</div>
+</footer>
+
+</main>
+
+<script>
+const secs = document.querySelectorAll('.sec');
+const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.05});
+secs.forEach(s => io.observe(s));
+
+function setActive(el) {
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function showJD(id, tab) {
+  document.querySelectorAll('.jd-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.jd-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('jd-' + id).classList.add('active');
+  tab.classList.add('active');
+}
+
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 130) cur = s.id;
+  });
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + cur) l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
